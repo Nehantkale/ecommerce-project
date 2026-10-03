@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ProductController {
     }
 
     @PostMapping("/public/products")
-    public ResponseEntity<String> createProduct(@RequestBody Product product) {
+    public ResponseEntity<String> createProduct(@Valid @RequestBody Product product) {
         productService.createProduct(product);
         return new ResponseEntity<>("Product created successfully", HttpStatus.CREATED);
     }
